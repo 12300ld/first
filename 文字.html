@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字循环滚动</title>
+
+	<style>
+
+	*{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+		#box{
+			width:300px;
+			height:200px;
+			border:solid 1px red;
+			margin:100px auto;
+			background:#333;
+			text-align: center;
+			/*line-height: 50px;*/
+			font-size:20px;
+			color:#f60;
+			overflow: hidden;
+		}
+		li{
+			height:20px;
+			width:300px;
+			text-align: center；
+			line-height：20px;
+			padding:10px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="cont">
+			<li>人生若只如初见</li>
+			<li>何事秋风悲画扇</li>
+			<li>等闲变却故人心</li>
+			<li>却道故人心易变</li>
+			<li>我在凌晨的三点</li>
+			<li>醒来的夜里</li>
+			<li>想起那失去的你</li>
+			<li>都结束了</li>
+			
+		</ul>
+
+		<ul id="cont1"></ul>
+	</div>
+
+	<script>
+		// 获取节点
+		var box=document.getElementById('box'),
+			cont=document.getElementById('cont'),
+			cont1=document.getElementById('cont1');
+			console.log(box,cont,cont1);
+
+			cont1.innerHTML=cont.innerHTML;
+			// 设置函数滚动
+
+			function scrollUp(){
+				// 设置滚动边界
+				if(box.scrollTop>=cont.offsetHeight){
+					box.scrollTop=0;
+				}else{
+					box.scrollTop++;
+				}
+
+			}
+
+			// 设置定时器实现滚动
+			function auto(){
+				t=setInterval(scrollUp,20);
+
+			}
+			auto();
+			
+			box.onmouseover=function(){
+				clearInterval(t);
+			}
+			box.onmouseout=function(){
+				auto();
+			}
+	</script>
+</body>
+</html>
